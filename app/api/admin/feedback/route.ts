@@ -3,6 +3,8 @@ import { getAdminSession } from '@/lib/auth';
 import { getAllFeedbackRecords } from '@/lib/db';
 import { StoredFeedback, RatingValue } from '@/lib/types';
 
+export const dynamic = 'force-dynamic';
+
 const RATING_SCORE_MAP: Record<RatingValue, number> = {
   Excellent: 4,
   Good: 3,

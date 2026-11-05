@@ -4,6 +4,8 @@ import path from 'path';
 import { getAllFeedbackRecords } from '@/lib/db';
 import { getAdminSession } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: NextRequest) {
   try {
     // Check Cron Secret Header or Admin Session

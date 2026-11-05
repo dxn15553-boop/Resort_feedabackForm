@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { saveFeedbackRecord } from '@/lib/db';
 import { FeedbackFormData } from '@/lib/types';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(req: NextRequest) {
   try {
     const body: FeedbackFormData = await req.json();
