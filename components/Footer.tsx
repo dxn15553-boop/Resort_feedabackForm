@@ -10,7 +10,7 @@ export const Footer: React.FC = () => {
           <span>Secure guest feedback submission</span>
         </div>
         <div className="flex items-center justify-center gap-1 text-slate-400">
-          <span>&copy; {new Date().getFullYear()} DXN Resort Management. All rights reserved.</span>
+          <span>&copy; {new Date().getFullYear()} Feedback Portal. All rights reserved.</span>
         </div>
       </div>
     </footer>

@@ -138,11 +138,6 @@ export const BackgroundDecoration: React.FC = () => {
       <div className="hidden md:block absolute bottom-56 right-40 text-pink-300/50 text-base font-light select-none">
         ⋆
       </div>
-
-      {/* 6. Subtle DXN Luxury Brand Silhouette Watermark in corner */}
-      <div className="hidden sm:flex absolute -bottom-16 -right-16 w-80 h-80 opacity-[0.045] select-none text-royal-pink font-serif font-black items-center justify-center text-[340px] leading-none pointer-events-none">
-        D
-      </div>
     </div>
   );
 };

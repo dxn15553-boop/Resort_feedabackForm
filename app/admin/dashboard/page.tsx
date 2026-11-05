@@ -266,19 +266,16 @@ export default function AdminDashboardPage() {
       <header className="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-dxn-900 via-royal-pink to-pink-500 flex items-center justify-center shadow-md text-white font-serif font-black text-xl">
-              D
-            </div>
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="font-serif text-lg sm:text-xl font-bold text-slate-900">
-                  DXN RESORT
+                  Feedback Form
                 </h1>
                 <span className="text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 rounded-full bg-pink-100 text-royal-pink">
-                  EXECUTIVE PORTAL
+                  ADMIN PORTAL
                 </span>
               </div>
-              <p className="text-xs text-slate-500 font-medium">Guest Intelligence, Audits & Analytics</p>
+              <p className="text-xs text-slate-500 font-medium">Guest Submissions & Analytics</p>
             </div>
           </div>
 

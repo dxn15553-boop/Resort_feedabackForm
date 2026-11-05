@@ -14,10 +14,10 @@ export default function Home() {
       <section className="relative w-full pt-6 pb-2 sm:pt-8 sm:pb-4 px-4 text-center">
         <div className="max-w-xl mx-auto">
           <h1 className="text-2xl sm:text-3xl font-serif font-black text-slate-900 tracking-tight">
-            Guest Feedback
+            Feedback Form
           </h1>
           <p className="mt-1 text-xs sm:text-sm text-slate-600 font-medium">
-            We value your stay experience. Please share your feedback below.
+            Please share your stay experience with us.
           </p>
         </div>
       </section>

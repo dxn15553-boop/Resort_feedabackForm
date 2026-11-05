@@ -42,14 +42,11 @@ export default function AdminLoginPage() {
     <div className="min-h-screen flex flex-col justify-center items-center px-4 py-12 bg-gradient-to-br from-white via-pink-50/40 to-rose-100/50 relative overflow-hidden">
       <BackgroundDecoration />
       <div className="w-full max-w-md relative z-10">
-        {/* Brand header */}
+        {/* Header */}
         <div className="text-center mb-8">
-          <div className="mx-auto w-14 h-14 rounded-2xl bg-gradient-to-tr from-dxn-900 via-royal-pink to-pink-500 flex items-center justify-center shadow-soft text-white font-serif font-black text-2xl mb-3">
-            D
-          </div>
-          <h1 className="text-2xl font-serif font-bold text-slate-900">DXN RESORT</h1>
-          <p className="text-xs uppercase tracking-widest text-royal-pink font-semibold mt-0.5">
-            Executive Admin Management Portal
+          <h1 className="text-2xl font-serif font-bold text-slate-900">Feedback Form</h1>
+          <p className="text-xs uppercase tracking-widest text-royal-pink font-semibold mt-1">
+            Admin Portal
           </p>
         </div>
 
