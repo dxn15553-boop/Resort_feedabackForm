@@ -4,13 +4,22 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
+    "postinstall": "prisma generate",
     "start": "next start",
     "lint": "next lint",
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
     "backup": "tsx scripts/backup.ts",
     "restore": "tsx scripts/restore.ts"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@prisma/client",
+      "@prisma/engines",
+      "prisma",
+      "esbuild"
+    ]
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.9.5",
