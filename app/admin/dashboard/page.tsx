@@ -27,6 +27,7 @@ import {
   ListFilter,
   Check,
   TrendingUp,
+  AlertCircle,
 } from 'lucide-react';
 
 export default function AdminDashboardPage() {
@@ -63,21 +64,39 @@ export default function AdminDashboardPage() {
   // Backup state
   const [backupLoading, setBackupLoading] = useState(false);
   const [backupStatus, setBackupStatus] = useState<string | null>(null);
+  const [fetchError, setFetchError] = useState<string | null>(null);
 
   const fetchDashboardData = async () => {
     setLoading(true);
+    setFetchError(null);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 12000);
+
     try {
-      const res = await fetch('/api/admin/feedback');
+      const res = await fetch('/api/admin/feedback', {
+        signal: controller.signal,
+        cache: 'no-store',
+      });
+      clearTimeout(timeoutId);
+
       if (res.status === 401) {
-        router.push('/admin/login');
+        window.location.replace('/admin/login');
         return;
       }
       const json = await res.json();
-      if (json.success) {
+      if (json.success && json.data) {
         setData(json.data);
+      } else {
+        setFetchError(json.error || 'Failed to load dashboard data');
       }
-    } catch (err) {
+    } catch (err: any) {
+      clearTimeout(timeoutId);
       console.error('Failed to load dashboard data:', err);
+      if (err.name === 'AbortError') {
+        setFetchError('Request timed out while connecting to database. Please click Retry.');
+      } else {
+        setFetchError(err.message || 'Network error connecting to dashboard');
+      }
     } finally {
       setLoading(false);
     }
@@ -207,6 +226,34 @@ export default function AdminDashboardPage() {
     );
   }
 
+  if (fetchError || !data) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
+        <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm max-w-md w-full text-center">
+          <AlertCircle className="w-10 h-10 text-rose-500 mx-auto mb-3" />
+          <h2 className="text-lg font-bold text-slate-900 mb-1">Session Expired or Login Required</h2>
+          <p className="text-xs text-slate-600 mb-5">
+            {fetchError || 'Please log in with administrative credentials to access this dashboard.'}
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
+            <button
+              onClick={() => fetchDashboardData()}
+              className="w-full sm:w-auto px-4 py-2 bg-royal-pink text-white text-xs font-semibold rounded-lg hover:bg-royal-pinkHover transition-colors"
+            >
+              Retry
+            </button>
+            <button
+              onClick={() => { window.location.href = '/admin/login'; }}
+              className="w-full sm:w-auto px-4 py-2 bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg hover:bg-slate-200 transition-colors"
+            >
+              Sign In to Admin
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const recRate = data?.recommendationStats?.total
     ? Math.round(((data.recommendationStats.Absolutely || 0) / data.recommendationStats.total) * 100)
     : 0;
@@ -277,7 +324,7 @@ export default function AdminDashboardPage() {
             }`}
           >
             <ListFilter className="w-3.5 h-3.5" />
-            <span>Guest Records ({data?.records.length || 0})</span>
+            <span>Guest Records ({data?.records?.length || 0})</span>
           </button>
 
           <button
@@ -316,7 +363,7 @@ export default function AdminDashboardPage() {
             }`}
           >
             <Factory className="w-3.5 h-3.5" />
-            <span>Factory Tours ({data?.factoryVisitStats.visited || 0})</span>
+            <span>Factory Tours ({data?.factoryVisitStats?.visited || 0})</span>
           </button>
 
           <button

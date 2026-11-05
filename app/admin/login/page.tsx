@@ -30,7 +30,7 @@ export default function AdminLoginPage() {
         throw new Error(data.error || 'Authentication failed. Please verify credentials.');
       }
 
-      router.push('/admin/dashboard');
+      window.location.href = '/admin/dashboard';
     } catch (err: any) {
       setError(err.message || 'Login failed');
     } finally {
