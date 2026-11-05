@@ -17,6 +17,7 @@ export interface FeedbackFormData {
   fullName: string;
   roomNumber: string;
   visitDate: string;
+  lengthOfStay?: string;
   purposeOfVisit: PurposeOfVisit | '';
   overallImpression: OverallImpression | '';
 
@@ -61,6 +62,7 @@ export interface FeedbackFormData {
 
   // STEP 06 – Final Summary
   refinementText: string;
+  staffCompliment?: string;
   ambassadorStatus: AmbassadorStatus | '';
 
   // Submission metadata
@@ -78,6 +80,7 @@ export const INITIAL_FORM_DATA: FeedbackFormData = {
   fullName: '',
   roomNumber: '',
   visitDate: '',
+  lengthOfStay: '1 - 2 Nights',
   purposeOfVisit: '',
   overallImpression: '',
 
@@ -112,6 +115,7 @@ export const INITIAL_FORM_DATA: FeedbackFormData = {
   productHandWash: '',
 
   refinementText: '',
+  staffCompliment: '',
   ambassadorStatus: '',
 };
 

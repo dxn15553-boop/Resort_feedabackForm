@@ -73,6 +73,7 @@ export async function saveFeedbackRecord(data: FeedbackFormData): Promise<{ succ
         fullName: data.fullName,
         roomNumber: data.roomNumber,
         visitDate: data.visitDate,
+        lengthOfStay: data.lengthOfStay || null,
         purposeOfVisit: data.purposeOfVisit,
         overallImpression: data.overallImpression,
 
@@ -106,6 +107,7 @@ export async function saveFeedbackRecord(data: FeedbackFormData): Promise<{ succ
         productHandWash: data.productHandWash,
 
         refinementText: data.refinementText || '',
+        staffCompliment: data.staffCompliment || null,
         ambassadorStatus: data.ambassadorStatus,
       },
     });

@@ -176,6 +176,7 @@ export default function AdminDashboardPage() {
       'Full Name': r.fullName,
       'Room Number': r.roomNumber,
       'Visit Date': r.visitDate,
+      'Length of Stay': r.lengthOfStay || 'N/A',
       'Purpose of Visit': r.purposeOfVisit,
       'Overall Impression': r.overallImpression,
       'Check-in Process': r.checkInProcess,
@@ -203,6 +204,7 @@ export default function AdminDashboardPage() {
       'Product - Shampoo': r.productShampoo,
       'Product - Coffee': r.productCoffee,
       'Product - Hand Wash': r.productHandWash,
+      'Staff Compliments': r.staffCompliment || 'N/A',
       'Suggestions & Refinements': r.refinementText || '',
       'Recommend to Others': r.ambassadorStatus,
     }));
@@ -847,6 +849,12 @@ export default function AdminDashboardPage() {
                     <p className="text-xs text-slate-800 italic leading-relaxed whitespace-pre-wrap bg-white p-3 rounded-lg border border-slate-200">
                       &ldquo;{r.refinementText}&rdquo;
                     </p>
+                    {r.staffCompliment && (
+                      <div className="mt-2 p-2 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] flex items-center gap-1.5 font-medium">
+                        <span>★ Staff Compliment:</span>
+                        <span className="font-semibold">{r.staffCompliment}</span>
+                      </div>
+                    )}
                     <div className="mt-2 flex items-center justify-between text-[11px] text-slate-500">
                       <span>Ambassador Status: <strong className="text-emerald-700">{r.ambassadorStatus}</strong></span>
                       <button
@@ -917,9 +925,15 @@ export default function AdminDashboardPage() {
                     <span className="font-bold text-royal-pink">{selectedRecord.overallImpression}</span>
                   </div>
                 </div>
-                <div className="mt-2 pt-2 border-t border-slate-200">
-                  <span className="text-slate-400">Purpose of Visit: </span>
-                  <span className="font-semibold text-slate-800">{selectedRecord.purposeOfVisit}</span>
+                <div className="mt-2 pt-2 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2">
+                  <div>
+                    <span className="text-slate-400">Purpose of Visit: </span>
+                    <span className="font-semibold text-slate-800">{selectedRecord.purposeOfVisit}</span>
+                  </div>
+                  <div>
+                    <span className="text-slate-400">Length of Stay: </span>
+                    <span className="font-semibold text-slate-800">{selectedRecord.lengthOfStay || '1 - 2 Nights'}</span>
+                  </div>
                 </div>
               </div>
 
@@ -1075,6 +1089,14 @@ export default function AdminDashboardPage() {
                     {selectedRecord.refinementText || '(No comments provided)'}
                   </p>
                 </div>
+                {selectedRecord.staffCompliment && (
+                  <div className="mb-3">
+                    <span className="text-slate-400 block mb-0.5">Staff Recognition / Compliments:</span>
+                    <p className="font-semibold text-emerald-800 bg-emerald-50 p-2.5 rounded-lg border border-emerald-200">
+                      ★ {selectedRecord.staffCompliment}
+                    </p>
+                  </div>
+                )}
                 <div>
                   <span className="text-slate-400 block">Ambassador Status:</span>
                   <span className="font-bold text-emerald-700 text-sm">{selectedRecord.ambassadorStatus}</span>

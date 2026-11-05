@@ -3,7 +3,7 @@
 import React from 'react';
 import { FeedbackFormData, PurposeOfVisit, RatingValue } from '@/lib/types';
 import { RatingCardGroup } from '../RatingCardGroup';
-import { User, KeyRound, Calendar, Compass } from 'lucide-react';
+import { User, KeyRound, Calendar, Compass, Clock } from 'lucide-react';
 
 interface Step01Props {
   data: FeedbackFormData;
@@ -76,29 +76,53 @@ export const Step01GuestInfo: React.FC<Step01Props> = ({ data, updateData, error
         </div>
       </div>
 
-      {/* Visit Date */}
-      <div>
-        <label className="block text-sm font-semibold text-slate-800 mb-1.5">
-          Visit Date <span className="text-rose-600 font-bold">*</span>
-        </label>
-        <div className="relative sm:max-w-xs">
-          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-            <Calendar className="w-4 h-4" />
+      {/* Visit Date & Length of Stay */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label className="block text-sm font-semibold text-slate-800 mb-1.5">
+            Visit Date <span className="text-rose-600 font-bold">*</span>
+          </label>
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+              <Calendar className="w-4 h-4" />
+            </div>
+            <input
+              type="date"
+              value={data.visitDate}
+              onChange={(e) => updateData({ visitDate: e.target.value })}
+              className={`w-full pl-10 pr-3.5 py-2.5 rounded-xl border bg-white text-slate-900 text-sm focus:outline-none transition-all ${
+                errors.visitDate
+                  ? 'border-rose-400 ring-2 ring-rose-100 bg-rose-50/20'
+                  : 'border-slate-200 focus:border-royal-pink focus:ring-2 focus:ring-royal-pink/15'
+              }`}
+            />
           </div>
-          <input
-            type="date"
-            value={data.visitDate}
-            onChange={(e) => updateData({ visitDate: e.target.value })}
-            className={`w-full pl-10 pr-3.5 py-2.5 rounded-xl border bg-white text-slate-900 text-sm focus:outline-none transition-all ${
-              errors.visitDate
-                ? 'border-rose-400 ring-2 ring-rose-100 bg-rose-50/20'
-                : 'border-slate-200 focus:border-royal-pink focus:ring-2 focus:ring-royal-pink/15'
-            }`}
-          />
+          {errors.visitDate && (
+            <p className="mt-1 text-xs text-rose-600 font-medium">{errors.visitDate}</p>
+          )}
         </div>
-        {errors.visitDate && (
-          <p className="mt-1 text-xs text-rose-600 font-medium">{errors.visitDate}</p>
-        )}
+
+        <div>
+          <label className="block text-sm font-semibold text-slate-800 mb-1.5">
+            Length of Stay
+          </label>
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+              <Clock className="w-4 h-4" />
+            </div>
+            <select
+              value={data.lengthOfStay || '1 - 2 Nights'}
+              onChange={(e) => updateData({ lengthOfStay: e.target.value })}
+              className="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:outline-none focus:border-royal-pink focus:ring-2 focus:ring-royal-pink/15 transition-all"
+            >
+              <option value="1 Night">1 Night</option>
+              <option value="2 - 3 Nights">2 - 3 Nights</option>
+              <option value="4 - 6 Nights">4 - 6 Nights</option>
+              <option value="7+ Nights">7+ Nights (Extended Stay)</option>
+              <option value="Day Visit">Day Visit (No Overnight)</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       {/* Purpose of Visit */}

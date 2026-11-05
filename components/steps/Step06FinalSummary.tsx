@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { AmbassadorStatus, FeedbackFormData } from '@/lib/types';
-import { HeartHandshake, MessageSquareQuote, CheckCircle, ThumbsUp, ThumbsDown } from 'lucide-react';
+import { HeartHandshake, MessageSquareQuote, CheckCircle, ThumbsUp, ThumbsDown, Award } from 'lucide-react';
 
 interface Step06Props {
   data: FeedbackFormData;
@@ -31,10 +31,10 @@ export const Step06FinalSummary: React.FC<Step06Props> = ({ data, updateData, er
 
         <div className="mt-3">
           <textarea
-            rows={5}
+            rows={4}
             value={data.refinementText}
             onChange={(e) => updateData({ refinementText: e.target.value })}
-            placeholder="Type your personal observations, memorable staff mentions, or special suggestions here..."
+            placeholder="Type your personal observations, special requests, or suggestions here..."
             className={`w-full p-3.5 rounded-xl border bg-white text-slate-900 text-sm focus:outline-none transition-all resize-y ${
               errors.refinementText
                 ? 'border-rose-400 ring-2 ring-rose-100 bg-rose-50/20'
@@ -47,6 +47,33 @@ export const Step06FinalSummary: React.FC<Step06Props> = ({ data, updateData, er
               {errors.refinementText}
             </p>
           )}
+        </div>
+      </div>
+
+      {/* Staff Recognition / Compliment (Optional) */}
+      <div className="bg-slate-50/50 rounded-2xl p-4 sm:p-5 border border-pink-100/60">
+        <div className="flex items-center gap-2 mb-2">
+          <div className="w-7 h-7 rounded-lg bg-pink-100 text-royal-pink flex items-center justify-center">
+            <Award className="w-4 h-4" />
+          </div>
+          <div>
+            <label className="block text-sm font-bold text-slate-900">
+              Staff Recognition & Compliments <span className="text-xs font-normal text-slate-500">(Optional)</span>
+            </label>
+            <p className="text-xs text-slate-500">
+              Did any team member make your stay special? Share their name or department so we can recognize them.
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-3">
+          <input
+            type="text"
+            value={data.staffCompliment || ''}
+            onChange={(e) => updateData({ staffCompliment: e.target.value })}
+            placeholder="e.g. Chef, Receptionist, or Housekeeping team"
+            className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:outline-none focus:border-royal-pink focus:ring-2 focus:ring-royal-pink/15 transition-all"
+          />
         </div>
       </div>
 

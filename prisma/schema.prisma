@@ -18,6 +18,7 @@ model Feedback {
   fullName                String
   roomNumber              String
   visitDate               String
+  lengthOfStay            String?
   purposeOfVisit          String
   overallImpression       String
 
@@ -56,6 +57,7 @@ model Feedback {
 
   // STEP 06 - Final Summary
   refinementText          String?
+  staffCompliment         String?
   ambassadorStatus        String
 
   // Admin notes / metadata
