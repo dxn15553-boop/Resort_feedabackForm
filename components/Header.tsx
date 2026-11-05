@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { ShieldCheck, Sparkles } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 
 export const Header: React.FC = () => {
   return (
@@ -30,11 +30,7 @@ export const Header: React.FC = () => {
             <span>Admin</span>
           </Link>
         </div>
-            <span>Admin</span>
-          </Link>
-        </div>
       </div>
     </header>
   );
 };
-
