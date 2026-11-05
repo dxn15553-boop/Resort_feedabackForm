@@ -1,0 +1,77 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Feedback {
+  id                      String    @id @default(uuid())
+  feedbackId              String    @unique
+  clientSubmissionToken   String?   @unique
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+
+  // STEP 01 - Guest Information
+  fullName                String
+  roomNumber              String
+  visitDate               String
+  purposeOfVisit          String
+  overallImpression       String
+
+  // STEP 02 - Hospitality & Rooms
+  checkInProcess          String
+  checkOutProcess         String
+  staffFriendliness       String
+  responseToRequests      String
+  roomCleanliness         String
+  comfortAmenities        String
+  housekeepingService     String
+
+  // STEP 03 - Catering & Factory
+  foodQuality             String
+  roomService             String
+  factoryVisited          String
+
+  // STEP 04 - Industrial Experience (Nullable if skipped)
+  guidedTourExperience    String?
+  informationProvided     String?
+  cleanlinessOrganization String?
+  interactionWithStaff    String?
+  safetyMeasures          String?
+
+  // STEP 05 - Products & Staff
+  staffProfessionalism    String
+  emergencyPreparedness   String
+  safetyCompliance        String
+  productBiscuits         String
+  productKombucha         String
+  productToothpaste       String
+  productSoap             String
+  productShampoo          String
+  productCoffee           String
+  productHandWash         String
+
+  // STEP 06 - Final Summary
+  refinementText          String?
+  ambassadorStatus        String
+
+  // Admin notes / metadata
+  isArchived              Boolean   @default(false)
+
+  @@index([visitDate])
+  @@index([overallImpression])
+  @@index([roomNumber])
+  @@index([fullName])
+}
+
+model AdminUser {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+}
+
