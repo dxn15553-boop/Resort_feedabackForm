@@ -14,16 +14,6 @@ interface Step02Props {
 export const Step02HospitalityRooms: React.FC<Step02Props> = ({ data, updateData, errors }) => {
   return (
     <div className="space-y-6">
-      {/* Intro section */}
-      <div className="border-b border-pink-100 pb-4">
-        <h2 className="text-xl sm:text-2xl font-serif font-bold text-slate-900">
-          STEP 02 – Hospitality & Rooms
-        </h2>
-        <p className="text-sm text-slate-600 mt-1">
-          Please rate the attentiveness of our front desk, staff hospitality, and the comfort of your accommodations.
-        </p>
-      </div>
-
       {/* Guest Services Sub-category */}
       <div className="bg-slate-50/50 rounded-2xl p-4 sm:p-5 border border-pink-100/60">
         <div className="flex items-center gap-2 mb-3 pb-2 border-b border-pink-100/60">

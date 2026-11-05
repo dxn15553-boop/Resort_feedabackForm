@@ -14,20 +14,6 @@ interface Step04Props {
 export const Step04IndustrialExperience: React.FC<Step04Props> = ({ data, updateData, errors }) => {
   return (
     <div className="space-y-6">
-      {/* Intro section */}
-      <div className="border-b border-pink-100 pb-4">
-        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-pink-100 text-royal-pink mb-2">
-          <Factory className="w-3.5 h-3.5" />
-          <span>DXN Industrial & Production Facility</span>
-        </div>
-        <h2 className="text-xl sm:text-2xl font-serif font-bold text-slate-900">
-          STEP 04 – Industrial Experience
-        </h2>
-        <p className="text-sm text-slate-600 mt-1">
-          Thank you for touring our factory. Please rate the tour guide, hygiene, organization, and safety standards during your visit.
-        </p>
-      </div>
-
       {/* Factory Metrics Container */}
       <div className="bg-slate-50/50 rounded-2xl p-4 sm:p-5 border border-pink-100/60">
         <div className="flex items-center gap-2 mb-3 pb-2 border-b border-pink-100/60">

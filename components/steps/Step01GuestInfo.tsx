@@ -21,16 +21,6 @@ const PURPOSES: { value: PurposeOfVisit; label: string; desc: string }[] = [
 export const Step01GuestInfo: React.FC<Step01Props> = ({ data, updateData, errors }) => {
   return (
     <div className="space-y-6">
-      {/* Intro section */}
-      <div className="border-b border-pink-100 pb-4">
-        <h2 className="text-xl sm:text-2xl font-serif font-bold text-slate-900">
-          STEP 01 – Guest Information
-        </h2>
-        <p className="text-sm text-slate-600 mt-1">
-          Please provide your stay details so we may personalize our hospitality records.
-        </p>
-      </div>
-
       {/* Grid of Inputs */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         {/* Full Name */}

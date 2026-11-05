@@ -14,16 +14,6 @@ interface Step03Props {
 export const Step03CateringFactory: React.FC<Step03Props> = ({ data, updateData, errors }) => {
   return (
     <div className="space-y-6">
-      {/* Intro section */}
-      <div className="border-b border-pink-100 pb-4">
-        <h2 className="text-xl sm:text-2xl font-serif font-bold text-slate-900">
-          STEP 03 – Catering & Factory
-        </h2>
-        <p className="text-sm text-slate-600 mt-1">
-          Share your culinary dining experience and indicate if your itinerary included an industrial factory tour.
-        </p>
-      </div>
-
       {/* F&B Performance */}
       <div className="bg-slate-50/50 rounded-2xl p-4 sm:p-5 border border-pink-100/60">
         <div className="flex items-center gap-2 mb-3 pb-2 border-b border-pink-100/60">
