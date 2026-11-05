@@ -274,6 +274,10 @@ export default function AdminDashboardPage() {
                 <span className="text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 rounded-full bg-pink-100 text-royal-pink">
                   ADMIN PORTAL
                 </span>
+                <span className="hidden sm:inline-flex items-center gap-1 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  Database Active
+                </span>
               </div>
               <p className="text-xs text-slate-500 font-medium">Guest Submissions & Analytics</p>
             </div>

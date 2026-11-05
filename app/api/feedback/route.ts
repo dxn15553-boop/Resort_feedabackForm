@@ -69,26 +69,22 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Attempt save to database
+    // Attempt save directly to PostgreSQL database
     const result = await saveFeedbackRecord(body);
-
-    if (!result.success) {
-      return NextResponse.json(
-        { success: false, error: 'Database transaction could not be completed.' },
-        { status: 500 }
-      );
-    }
 
     return NextResponse.json({
       success: true,
       feedbackId: result.feedbackId,
       source: result.source,
-      message: 'Feedback submitted and safely recorded.',
+      message: 'Feedback verified and saved to database.',
     });
   } catch (err: any) {
     console.error('Server error handling feedback submission:', err);
     return NextResponse.json(
-      { success: false, error: 'Internal server error while saving feedback. Please retry.' },
+      {
+        success: false,
+        error: err.message || 'Database save error: Your submission could NOT be saved. Please retry.',
+      },
       { status: 500 }
     );
   }

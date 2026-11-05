@@ -52,7 +52,7 @@ function saveLocalDataStore(data: StoredFeedback[]): void {
  * Attempts Prisma / Neon first. If the remote database is unreachable or credentials are placeholder,
  * saves to persistent local store so zero guest submissions are ever lost.
  */
-export async function saveFeedbackRecord(data: FeedbackFormData): Promise<{ success: boolean; feedbackId: string; source: 'database' | 'local' }> {
+export async function saveFeedbackRecord(data: FeedbackFormData): Promise<{ success: boolean; feedbackId: string; source: 'database' }> {
   const feedbackId = generateFeedbackId();
   const now = new Date().toISOString();
 
@@ -64,7 +64,7 @@ export async function saveFeedbackRecord(data: FeedbackFormData): Promise<{ succ
     }
   }
 
-  // Attempt database save via Prisma
+  // Attempt database save via Prisma directly to Neon PostgreSQL
   try {
     const created = await prisma.feedback.create({
       data: {
@@ -112,32 +112,25 @@ export async function saveFeedbackRecord(data: FeedbackFormData): Promise<{ succ
       },
     });
 
-    // Also mirror to local store as backup
-    const list = ensureDataStore();
-    list.unshift({
-      ...data,
-      id: created.id,
-      feedbackId: created.feedbackId,
-      createdAt: created.createdAt.toISOString(),
-    });
-    saveLocalDataStore(list);
+    // Mirror to local cache as secondary copy
+    try {
+      const list = ensureDataStore();
+      list.unshift({
+        ...data,
+        id: created.id,
+        feedbackId: created.feedbackId,
+        createdAt: created.createdAt.toISOString(),
+      });
+      saveLocalDataStore(list);
+    } catch {}
 
     return { success: true, feedbackId: created.feedbackId, source: 'database' };
-  } catch (dbErr) {
-    console.warn('Prisma DB write failed or database not reachable. Falling back to persistent store:', dbErr);
-
-    // Persist to local backup storage
-    const list = ensureDataStore();
-    const newRecord: StoredFeedback = {
-      ...data,
-      id: feedbackId,
-      feedbackId,
-      createdAt: now,
-    };
-    list.unshift(newRecord);
-    saveLocalDataStore(list);
-
-    return { success: true, feedbackId, source: 'local' };
+  } catch (dbErr: any) {
+    console.error('CRITICAL: Database write failed:', dbErr);
+    // Explicitly throw so the user is immediately notified if saving to PostgreSQL fails
+    throw new Error(
+      `Database save failed: ${dbErr.message || 'Unable to connect to PostgreSQL. Your feedback was NOT recorded.'}`
+    );
   }
 }
 
@@ -166,16 +159,13 @@ export async function getAllFeedbackRecords(): Promise<StoredFeedback[]> {
     const records = await prisma.feedback.findMany({
       orderBy: { createdAt: 'desc' },
     });
-    if (records && records.length > 0) {
-      return records.map((r) => ({
-        ...(r as any),
-        createdAt: r.createdAt.toISOString(),
-      }));
-    }
+    return records.map((r) => ({
+      ...(r as any),
+      createdAt: r.createdAt.toISOString(),
+    }));
   } catch (err) {
     console.warn('Could not read from Prisma database. Using local persistent store:', err);
+    return ensureDataStore();
   }
-
-  return ensureDataStore();
 }
 
