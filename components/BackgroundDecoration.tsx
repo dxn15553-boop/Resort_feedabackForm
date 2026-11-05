@@ -97,50 +97,50 @@ export const BackgroundDecoration: React.FC = () => {
         />
       </svg>
 
-      {/* 4. Luxury Concentric Resort Zen Rings & Halo Accents */}
+      {/* 4. Luxury Concentric Resort Zen Rings & Halo Accents (Responsively scaled) */}
       {/* Top Right Ripple Group */}
-      <div className="absolute top-12 right-6 md:right-20 w-80 h-80 rounded-full border border-pink-400/25 opacity-70 animate-pulse-soft pointer-events-none" />
-      <div className="absolute top-20 right-14 md:right-28 w-64 h-64 rounded-full border border-rose-400/20 opacity-60 pointer-events-none" />
-      <div className="absolute top-28 right-22 md:right-36 w-48 h-48 rounded-full border border-pink-500/25 border-dashed opacity-50 pointer-events-none" />
-      <div className="absolute top-36 right-30 md:right-44 w-32 h-32 rounded-full border border-royal-pink/20 opacity-40 pointer-events-none" />
+      <div className="absolute top-8 sm:top-12 -right-8 sm:right-6 md:right-20 w-44 h-44 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full border border-pink-400/25 opacity-70 animate-pulse-soft pointer-events-none" />
+      <div className="absolute top-12 sm:top-20 -right-4 sm:right-14 md:right-28 w-36 h-36 sm:w-52 sm:h-52 md:w-64 md:h-64 rounded-full border border-rose-400/20 opacity-60 pointer-events-none" />
+      <div className="absolute top-16 sm:top-28 0 sm:right-22 md:right-36 w-28 h-28 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full border border-pink-500/25 border-dashed opacity-50 pointer-events-none" />
+      <div className="absolute top-20 sm:top-36 4 sm:right-30 md:right-44 w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full border border-royal-pink/20 opacity-40 pointer-events-none" />
 
       {/* Bottom Left Ripple Group */}
-      <div className="absolute bottom-20 left-6 md:left-16 w-96 h-96 rounded-full border border-rose-400/25 opacity-60 animate-pulse-soft pointer-events-none" />
-      <div className="absolute bottom-28 left-14 md:left-24 w-80 h-80 rounded-full border border-pink-400/20 border-dashed opacity-50 pointer-events-none" />
-      <div className="absolute bottom-36 left-22 md:left-32 w-64 h-64 rounded-full border border-pink-500/20 opacity-40 pointer-events-none" />
-      <div className="absolute bottom-44 left-30 md:left-40 w-48 h-48 rounded-full border border-royal-pink/20 opacity-30 pointer-events-none" />
+      <div className="absolute bottom-12 sm:bottom-20 -left-10 sm:left-6 md:left-16 w-52 h-52 sm:w-72 sm:h-72 md:w-96 md:h-96 rounded-full border border-rose-400/25 opacity-60 animate-pulse-soft pointer-events-none" />
+      <div className="absolute bottom-16 sm:bottom-28 -left-6 sm:left-14 md:left-24 w-44 h-44 sm:w-60 sm:h-60 md:w-80 md:h-80 rounded-full border border-pink-400/20 border-dashed opacity-50 pointer-events-none" />
+      <div className="absolute bottom-20 sm:bottom-36 -left-2 sm:left-22 md:left-32 w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-full border border-pink-500/20 opacity-40 pointer-events-none" />
+      <div className="absolute bottom-24 sm:bottom-44 2 sm:left-30 md:left-40 w-28 h-28 sm:w-36 sm:h-36 md:w-48 md:h-48 rounded-full border border-royal-pink/20 opacity-30 pointer-events-none" />
 
       {/* Center Left Subtle Accent */}
-      <div className="hidden md:block absolute top-1/2 -left-20 w-72 h-72 rounded-full border border-rose-300/20 border-dotted opacity-40 pointer-events-none" />
+      <div className="hidden lg:block absolute top-1/2 -left-20 w-72 h-72 rounded-full border border-rose-300/20 border-dotted opacity-40 pointer-events-none" />
 
       {/* 5. Modern Fine Corner Sparkle Stars & Crosshairs */}
-      <div className="hidden sm:block absolute top-24 left-12 text-pink-400/60 text-2xl font-light select-none animate-pulse-soft">
+      <div className="hidden md:block absolute top-24 left-12 text-pink-400/60 text-2xl font-light select-none animate-pulse-soft">
         ✦
       </div>
-      <div className="hidden sm:block absolute top-36 left-28 text-rose-300/50 text-base font-light select-none">
+      <div className="hidden md:block absolute top-36 left-28 text-rose-300/50 text-base font-light select-none">
         ✧
       </div>
-      <div className="hidden sm:block absolute top-64 right-16 text-rose-400/60 text-3xl font-light select-none animate-pulse-soft">
+      <div className="hidden md:block absolute top-64 right-16 text-rose-400/60 text-3xl font-light select-none animate-pulse-soft">
         ✦
       </div>
-      <div className="hidden sm:block absolute top-80 right-32 text-pink-300/50 text-lg font-light select-none">
+      <div className="hidden md:block absolute top-80 right-32 text-pink-300/50 text-lg font-light select-none">
         ⋆
       </div>
-      <div className="hidden sm:block absolute bottom-72 left-20 text-rose-400/50 text-2xl font-light select-none">
+      <div className="hidden md:block absolute bottom-72 left-20 text-rose-400/50 text-2xl font-light select-none">
         ✦
       </div>
-      <div className="hidden sm:block absolute bottom-48 left-36 text-pink-300/60 text-lg font-light select-none">
+      <div className="hidden md:block absolute bottom-48 left-36 text-pink-300/60 text-lg font-light select-none">
         ✧
       </div>
-      <div className="hidden sm:block absolute bottom-36 right-24 text-rose-400/60 text-2xl font-light select-none animate-pulse-soft">
+      <div className="hidden md:block absolute bottom-36 right-24 text-rose-400/60 text-2xl font-light select-none animate-pulse-soft">
         ✦
       </div>
-      <div className="hidden sm:block absolute bottom-56 right-40 text-pink-300/50 text-base font-light select-none">
+      <div className="hidden md:block absolute bottom-56 right-40 text-pink-300/50 text-base font-light select-none">
         ⋆
       </div>
 
       {/* 6. Subtle DXN Luxury Brand Silhouette Watermark in corner */}
-      <div className="absolute -bottom-16 -right-16 w-80 h-80 opacity-[0.045] select-none text-royal-pink font-serif font-black flex items-center justify-center text-[340px] leading-none pointer-events-none">
+      <div className="hidden sm:flex absolute -bottom-16 -right-16 w-80 h-80 opacity-[0.045] select-none text-royal-pink font-serif font-black items-center justify-center text-[340px] leading-none pointer-events-none">
         D
       </div>
     </div>
