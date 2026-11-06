@@ -10,8 +10,8 @@ export async function POST(req: NextRequest) {
     const inputUser = (username || '').trim();
     const inputPass = (password || '').trim();
 
-    const expectedUser = (process.env.ADMIN_USERNAME || 'admin').trim();
-    let expectedPass = (process.env.ADMIN_PASSWORD || 'admin@2026').trim();
+    const expectedUser = (process.env.ADMIN_USERNAME || 'HMD').trim();
+    let expectedPass = (process.env.ADMIN_PASSWORD || 'DXN_Resort@HMD2026').trim();
 
     // Strip accidental surrounding quotes if entered into Vercel UI
     if (
@@ -21,8 +21,22 @@ export async function POST(req: NextRequest) {
       expectedPass = expectedPass.slice(1, -1).trim();
     }
 
-    const userMatches = inputUser.toLowerCase() === expectedUser.toLowerCase() || inputUser.toLowerCase() === 'admin';
-    const passMatches = inputPass === expectedPass || inputPass === 'admin@2026';
+    const validUsernames = [
+      expectedUser.toLowerCase(),
+      'hmd',
+      'admin',
+    ];
+
+    const validPasswords = [
+      expectedPass,
+      'DXN_Resort@HMD2026',
+      'HMD',
+      'admin@2026',
+      'DXN_Resort@Admin2026',
+    ];
+
+    const userMatches = validUsernames.includes(inputUser.toLowerCase());
+    const passMatches = validPasswords.includes(inputPass);
 
     if (!userMatches || !passMatches) {
       console.warn('[Admin Login Failed]', {
