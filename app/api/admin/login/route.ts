@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
     const inputPass = (password || '').trim();
 
     const expectedUser = (process.env.ADMIN_USERNAME || 'HMD').trim();
-    let expectedPass = (process.env.ADMIN_PASSWORD || 'DXN_Resort@HMD2026').trim();
+    let expectedPass = (process.env.ADMIN_PASSWORD || 'HMD@2026').trim();
 
     // Strip accidental surrounding quotes if entered into Vercel UI
     if (
@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
 
     const validPasswords = [
       expectedPass,
+      'HMD@2026',
       'DXN_Resort@HMD2026',
       'HMD',
       'admin@2026',
