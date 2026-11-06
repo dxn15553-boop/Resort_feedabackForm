@@ -7,17 +7,39 @@ export async function POST(req: NextRequest) {
   try {
     const { username, password } = await req.json();
 
-    const expectedUser = process.env.ADMIN_USERNAME || 'admin';
-    const expectedPass = process.env.ADMIN_PASSWORD || 'DXN_Resort@Admin2026';
+    const inputUser = (username || '').trim();
+    const inputPass = (password || '').trim();
 
-    if (username !== expectedUser || password !== expectedPass) {
+    const expectedUser = (process.env.ADMIN_USERNAME || 'admin').trim();
+    let expectedPass = (process.env.ADMIN_PASSWORD || 'DXN_Resort@Admin2026').trim();
+
+    // Strip accidental surrounding quotes if entered into Vercel UI
+    if (
+      (expectedPass.startsWith('"') && expectedPass.endsWith('"')) ||
+      (expectedPass.startsWith("'") && expectedPass.endsWith("'"))
+    ) {
+      expectedPass = expectedPass.slice(1, -1).trim();
+    }
+
+    const userMatches = inputUser.toLowerCase() === expectedUser.toLowerCase();
+    const passMatches = inputPass === expectedPass;
+
+    if (!userMatches || !passMatches) {
+      console.warn('[Admin Login Failed]', {
+        inputUser,
+        userMatches,
+        passLengthGiven: inputPass.length,
+        expectedPassLength: expectedPass.length,
+        hasEnvAdminPassword: Boolean(process.env.ADMIN_PASSWORD),
+      });
+
       return NextResponse.json(
         { success: false, error: 'Invalid admin username or password' },
         { status: 401 }
       );
     }
 
-    const token = await createAdminToken(username);
+    const token = await createAdminToken(expectedUser);
 
     const response = NextResponse.json({
       success: true,
