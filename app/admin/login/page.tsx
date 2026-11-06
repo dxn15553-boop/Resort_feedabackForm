@@ -8,7 +8,7 @@ import { BackgroundDecoration } from '@/components/BackgroundDecoration';
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [username, setUsername] = useState('admin');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -114,12 +114,6 @@ export default function AdminLoginPage() {
               </button>
             </div>
           </form>
-
-          <div className="mt-4 pt-4 border-t border-slate-100 text-center">
-            <span className="text-xs text-slate-400">
-              Default credentials in .env: <code className="bg-slate-100 px-1 py-0.5 rounded text-slate-600">admin</code> / <code className="bg-slate-100 px-1 py-0.5 rounded text-slate-600">DXN_Resort@Admin2026</code>
-            </span>
-          </div>
         </div>
 
         {/* Back Link */}
